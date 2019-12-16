@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Template product -->
+    <template id="website_product_template_info" inherit_id="website_sale.products_item" active="True" customize_show="True" name="product_default_code" priority="20">
+		<xpath expr="//div/section/div[hasclass('product_price')]" position="before">
+			<t t-if="product.default_code">
+				<span style="color:grey">Ref: <t t-esc="product.default_code"/></span>
+			</t>
+        </xpath>
+    </template>
+    <template id="website_sale" inherit_id="website_sale.products_item" active="True" customize_show="True" name="product_default_code" priority="20">
+	    <xpath expr="//div/section/div[hasclass('product_price')]" position="before">
+		    <t t-if="product.barcode">
+			        <br />
+				<span style="color:grey">Ean: <t t-esc="product.barcode"/></span>
+			</t>
+        </xpath>
+    </template>
+
+    <template id="products_attribute_custom" inherit_id="website_sale.products_attributes" active="True" customize_show="True" name="product_attributes_custom" priority="20">
+        <xpath expr="//form[hasclass('js_attributes')]" position="after">
+		<script>
+		      if(window.location.href.indexOf("shop/") ==  -1){
+		         form = document.querySelector('.js_attributes');
+		         form.style.display = "none";
+		      }
+	    	 </script> 
+	</xpath>		    
+    </template>
+</odoo>

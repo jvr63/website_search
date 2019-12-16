@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- product.template.product.website.form -->
+    <record id="product_template_web_description" model="ir.ui.view">
+        <field name="name">product.template.product.website.form</field>
+        <field name="model">product.template</field>
+		<field name="inherit_id" ref="website_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+			<xpath expr="//group[@name='extra_images']" position="after">
+				<group string="Website description">
+					<field name="website_description"/>
+				</group>
+			</xpath>	
+        </field>
+    </record>
+
+</odoo>
