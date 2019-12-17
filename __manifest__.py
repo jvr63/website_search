@@ -1,8 +1,8 @@
 {
     'name': "Modify website search",
-    'summary': 'Show template info into product',
+    'summary': 'Modify website search',
     'description': """
-Show more info into template website_sale.product as EAN/REF, etc
+Modify website search
     """,
     'author': 'Juan Vázquez Moreno',
     'category': 'Website',
