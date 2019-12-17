@@ -1,5 +1,5 @@
 {
-    'name': "Show advanced product info",
+    'name': "Modify website search",
     'summary': 'Show template info into product',
     'description': """
 Show more info into template website_sale.product as EAN/REF, etc
