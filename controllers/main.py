@@ -4,9 +4,6 @@ import logging
 
 from odoo import fields, http, tools, _
 from odoo.http import request
-from odoo.exceptions import ValidationError
-from odoo.addons.website.controllers.main import Website
-from odoo.addons.sale.controllers.product_configurator import ProductConfiguratorController
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.osv import expression
 
@@ -47,3 +44,14 @@ class WebsiteSaleGuadalstore(WebsiteSale):
 
         return domain
 
+    @http.route()
+    def get_combination_info_website(self, product_template_id, product_id, combination, add_qty, **kw)
+        """
+            Added ref and barcode to original response
+        """
+        _logger.info('-----------------------------------------------------------------------------------')
+        kw.update({
+            'barcode': request.env['product.product'].browse(int(product_id)).barcode
+        })
+        res = super(WebsiteSaleGuadalstore, self).get_combination_info_website(product_template_id, product_id, combination, add_qty, **kw)
+        return res
