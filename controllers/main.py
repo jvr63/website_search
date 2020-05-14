@@ -9,7 +9,7 @@ from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
-class WebsiteSaleGuadalstore(WebsiteSale):
+class WebsiteSaleGuadalstoreSearch(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
         """
@@ -44,14 +44,3 @@ class WebsiteSaleGuadalstore(WebsiteSale):
 
         return domain
 
-    @http.route()
-    def get_combination_info_website(self, product_template_id, product_id, combination, add_qty, **kw)
-        """
-            Added ref and barcode to original response
-        """
-        _logger.info('-----------------------------------------------------------------------------------')
-        kw.update({
-            'barcode': request.env['product.product'].browse(int(product_id)).barcode
-        })
-        res = super(WebsiteSaleGuadalstore, self).get_combination_info_website(product_template_id, product_id, combination, add_qty, **kw)
-        return res
