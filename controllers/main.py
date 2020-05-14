@@ -9,7 +9,7 @@ from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
-class WebsiteSaleGuadalstore(WebsiteSale):
+class WebsiteSaleGuadalstoreSearch(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
         """
@@ -20,7 +20,8 @@ class WebsiteSaleGuadalstore(WebsiteSale):
             for srch in search.split(" "):
                 domain += [
                     '|', '|', '|', ('name', 'ilike', srch), ('description', 'ilike', srch),
-                    ('description_sale', 'ilike', srch), ('product_variant_ids.default_code', 'ilike', srch)]
+                    ('description_sale', 'ilike', srch), ('product_variant_ids.default_code', 'ilike', srch),
+                    ('product_variant_ids.barcode', 'ilike', srch)]
 
         if category:
             domain += [('public_categ_ids', 'child_of', int(category))]
@@ -44,13 +45,14 @@ class WebsiteSaleGuadalstore(WebsiteSale):
         return domain
 
     @http.route()
-    def get_combination_info_website(self, product_template_id, product_id, combination, add_qty, **kw)
+    def get_combination_info_website(self, product_template_id, product_id, combination, add_qty, **kw):
         """
             Added ref and barcode to original response
         """
-        _logger.info('-----------------------------------------------------------------------------------')
-        kw.update({
-            'barcode': request.env['product.product'].browse(int(product_id)).barcode
-        })
         res = super(WebsiteSaleGuadalstore, self).get_combination_info_website(product_template_id, product_id, combination, add_qty, **kw)
+        product = request.env['product.product'].browse(int(product_id))
+        res.update({
+            'barcode': product.barcode,
+            'default_code': product.default_code
+             })
         return res
