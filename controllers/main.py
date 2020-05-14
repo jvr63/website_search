@@ -4,15 +4,12 @@ import logging
 
 from odoo import fields, http, tools, _
 from odoo.http import request
-from odoo.exceptions import ValidationError
-from odoo.addons.website.controllers.main import Website
-from odoo.addons.sale.controllers.product_configurator import ProductConfiguratorController
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
-class WebsiteSaleGuadalstore(WebsiteSale):
+class WebsiteSaleGuadalstoreSearch(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
         """
@@ -46,4 +43,3 @@ class WebsiteSaleGuadalstore(WebsiteSale):
                 domain += [('attribute_line_ids.value_ids', 'in', ids)]
 
         return domain
-
