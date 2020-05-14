@@ -43,4 +43,7 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
                 domain += [('attribute_line_ids.value_ids', 'in', ids)]
 
         return domain
+<<<<<<< HEAD
 
+=======
+>>>>>>> dc03c71... update
