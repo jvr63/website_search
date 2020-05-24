@@ -19,7 +19,7 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
             Modifica el domain de búsqueda, añade el EAN
         """
 
-        _logger.info( "Class name: " self.__class__.__name__)
+        _logger.info( "Class name: " + self.__class__.__name__)
 
         domain = request.website.sale_product_domain()
         if search:
