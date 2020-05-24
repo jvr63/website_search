@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+# TODO list
+# Añadir una búsqueda por atributos
+
 import logging
 
 from odoo import fields, http, tools, _
@@ -15,6 +18,9 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
         """
             Modifica el domain de búsqueda, añade el EAN
         """
+
+        _logger.info( "Class name: " self.__class__.__name__)
+
         domain = request.website.sale_product_domain()
         if search:
             for srch in search.split(" "):
