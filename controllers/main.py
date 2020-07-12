@@ -23,9 +23,9 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
         if search:
             for srch in search.split(" "):
                 domain += [
-                    '|', '|', '|', '|', ('name', 'ilike', srch), ('description', 'ilike', srch),
+                    '|', '|', '|', '|', '|',  ('name', 'ilike', srch), ('description', 'ilike', srch),
                     ('description_sale', 'ilike', srch), ('product_variant_ids.default_code', 'ilike', srch),
-                    ('product_variant_ids.barcode', 'ilike', srch)]
+                    ('product_variant_ids.barcode', 'ilike', srch), ('brand', 'ilike', srch)]
 
         if category:
             domain += [('public_categ_ids', 'child_of', int(category))]
