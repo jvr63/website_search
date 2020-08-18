@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# TODO list
-# Añadir una búsqueda por atributos
-
 import logging
 
 from odoo import fields, http, tools, _
@@ -46,5 +43,11 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
                     ids = [value[1]]
             if attrib:
                 domain += [('attribute_line_ids.value_ids', 'in', ids)]
+
+        # Código para filtrar por marca
+        brand_list = request.httprequest.args.getlist('brand')
+        brand_value = [int(v) for v in brand_list if v]
+        if brand_value:
+            domain += [('product_brand_id', '=', brand_value[0])]
 
         return domain
