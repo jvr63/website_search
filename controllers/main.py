@@ -51,3 +51,14 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
             domain += [('product_brand_id', '=', brand_value[0])]
 
         return domain
+
+    #@http.route()
+    #def shop(self, page=0, category=None, search='', ppg=False, **post):
+    #    """ Added ref and barcode to original response """
+    #    res = super(WebsiteSaleGuadalstoreSearch, self).shop(page, category, search, **kw)
+    #    product = request.env['product.product'].browse(res['product_id'])
+    #    res.update({
+    #        'product_brand_id': request.env['product.template'].browse(res['product_template_id']).product_brand_id.name,
+    #    })
+
+    #    return res
