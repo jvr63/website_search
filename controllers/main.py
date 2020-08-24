@@ -7,6 +7,8 @@ from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.osv import expression
 
+import ipdb
+
 _logger = logging.getLogger(__name__)
 
 class WebsiteSaleGuadalstoreSearch(WebsiteSale):
@@ -52,13 +54,10 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
 
         return domain
 
-    #@http.route()
-    #def shop(self, page=0, category=None, search='', ppg=False, **post):
-    #    """ Added ref and barcode to original response """
-    #    res = super(WebsiteSaleGuadalstoreSearch, self).shop(page, category, search, **kw)
-    #    product = request.env['product.product'].browse(res['product_id'])
-    #    res.update({
-    #        'product_brand_id': request.env['product.template'].browse(res['product_template_id']).product_brand_id.name,
-    #    })
-
-    #    return res
+    @http.route()
+    def shop(self, page=0, category=None, search='', ppg=False, **post):
+        """ Added ref and barcode to original response """
+        res = super(WebsiteSaleGuadalstoreSearch, self).shop(page, category, search, ppg, **post)
+        ipdb.set_trace()
+        res.update({"product_brand_id": None})
+        return res
