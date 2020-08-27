@@ -1,0 +1,3 @@
+[submodule "website_product_info"]
+	path = website_product_info
+	url = git@github.com:jvr63/website_product_info.git

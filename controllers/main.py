@@ -7,8 +7,6 @@ from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.osv import expression
 
-import ipdb
-
 _logger = logging.getLogger(__name__)
 
 class WebsiteSaleGuadalstoreSearch(WebsiteSale):
@@ -22,7 +20,7 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
         if search:
             for srch in search.split(" "):
                 domain += [
-                    '|', '|', '|', '|', '|',  ('name', 'ilike', srch), ('description', 'ilike', srch),
+                    '|', '|', '|', '|', '|', ('name', 'ilike', srch), ('description', 'ilike', srch),
                     ('description_sale', 'ilike', srch), ('product_variant_ids.default_code', 'ilike', srch),
                     ('product_variant_ids.barcode', 'ilike', srch), ('product_brand_id.name', 'ilike', srch)
                 ]
@@ -58,6 +56,8 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
     def shop(self, page=0, category=None, search='', ppg=False, **post):
         """ Added ref and barcode to original response """
         res = super(WebsiteSaleGuadalstoreSearch, self).shop(page, category, search, ppg, **post)
-        ipdb.set_trace()
-        res.update({"product_brand_id": None})
+        brands = request.env['product.brand'].browse(
+            map(lambda p: p['product'].product_brand_id.id, res.qcontext['bins'][0])
+        )
+        res.qcontext.update({'brands': brands})
         return res

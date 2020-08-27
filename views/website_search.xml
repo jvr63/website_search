@@ -9,6 +9,9 @@
 				</div>
 				<select class="form-control" name="brand">
 					<option value="" />
+					<t t-foreach="brands" t-as="brand">
+						<option t-att-value="brand.id" t-esc="brand.name" />
+					</t>
 				</select>
 			</li>
 		</xpath>
