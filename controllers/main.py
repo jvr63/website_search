@@ -59,5 +59,8 @@ class WebsiteSaleGuadalstoreSearch(WebsiteSale):
         brands = request.env['product.brand'].browse(
             map(lambda p: p['product'].product_brand_id.id, res.qcontext['bins'][0])
         )
-        res.qcontext.update({'brands': brands})
+        res.qcontext.update({
+            'brands': brands,
+            'brand_set': request.httprequest.args.get('brand', None)
+        })
         return res

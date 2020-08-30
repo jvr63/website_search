@@ -10,7 +10,7 @@
 				<select class="form-control" name="brand">
 					<option value="" />
 					<t t-foreach="brands" t-as="brand">
-						<option t-att-value="brand.id" t-esc="brand.name" />
+						<option t-att-value="brand.id" t-esc="brand.name" t-att-selected="True if brand_set else None"/>
 					</t>
 				</select>
 			</li>
