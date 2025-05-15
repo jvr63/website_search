@@ -1,13 +1,12 @@
 {
     'name': "Modify website search",
     'summary': 'Modify website search',
-    'description': "Mejora la búsquedas de productos",
+    'description': "Mejora la búsquedas de productos en shop añadiendo busqueda por codigo de barras",
     'author': 'Juan Vázquez Moreno <vmjuna90@gmail.com>;JVR <jvr@guadalsistema.com>',
     'category': 'Website',
-    'version': '1.0',
-    'depends': ['website_sale', 'product_brand'],
+    'version': '17.0.0',
+    'depends': ['website_sale'],
     'data': [
-        'views/website_search.xml',
     ],
     'installable': True,
 }
